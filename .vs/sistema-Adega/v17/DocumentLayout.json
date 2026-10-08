@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\.NET\\sistema-Adega\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{28DB9162-DC96-4586-A8B8-D92930E759C4}|sistema-Adega\\sistema-Adega.csproj|c:\\.net\\sistema-adega\\sistema-adega\\enums\\tipocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28DB9162-DC96-4586-A8B8-D92930E759C4}|sistema-Adega\\sistema-Adega.csproj|solutionrelative:sistema-adega\\enums\\tipocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28DB9162-DC96-4586-A8B8-D92930E759C4}|sistema-Adega\\sistema-Adega.csproj|c:\\.net\\sistema-adega\\sistema-adega\\enums\\statusentrega.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28DB9162-DC96-4586-A8B8-D92930E759C4}|sistema-Adega\\sistema-Adega.csproj|solutionrelative:sistema-adega\\enums\\statusentrega.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28DB9162-DC96-4586-A8B8-D92930E759C4}|sistema-Adega\\sistema-Adega.csproj|c:\\.net\\sistema-adega\\sistema-adega\\enums\\statuscompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28DB9162-DC96-4586-A8B8-D92930E759C4}|sistema-Adega\\sistema-Adega.csproj|solutionrelative:sistema-adega\\enums\\statuscompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TipoCompra.cs",
+              "DocumentMoniker": "C:\\.NET\\sistema-Adega\\sistema-Adega\\Enums\\TipoCompra.cs",
+              "RelativeDocumentMoniker": "sistema-Adega\\Enums\\TipoCompra.cs",
+              "ToolTip": "C:\\.NET\\sistema-Adega\\sistema-Adega\\Enums\\TipoCompra.cs",
+              "RelativeToolTip": "sistema-Adega\\Enums\\TipoCompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-25T12:30:35.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StatusEntrega.cs",
+              "DocumentMoniker": "C:\\.NET\\sistema-Adega\\sistema-Adega\\Enums\\StatusEntrega.cs",
+              "RelativeDocumentMoniker": "sistema-Adega\\Enums\\StatusEntrega.cs",
+              "ToolTip": "C:\\.NET\\sistema-Adega\\sistema-Adega\\Enums\\StatusEntrega.cs",
+              "RelativeToolTip": "sistema-Adega\\Enums\\StatusEntrega.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-25T12:23:02.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StatusCompra.cs",
+              "DocumentMoniker": "C:\\.NET\\sistema-Adega\\sistema-Adega\\Enums\\StatusCompra.cs",
+              "RelativeDocumentMoniker": "sistema-Adega\\Enums\\StatusCompra.cs",
+              "ToolTip": "C:\\.NET\\sistema-Adega\\sistema-Adega\\Enums\\StatusCompra.cs",
+              "RelativeToolTip": "sistema-Adega\\Enums\\StatusCompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-25T12:20:53.23Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
