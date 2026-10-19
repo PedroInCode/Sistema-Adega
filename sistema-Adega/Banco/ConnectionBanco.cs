@@ -33,4 +33,32 @@ internal static class ConnectionBanco
             }
         }
     }
+
+    public static int ExecutarComando(MySqlCommand cmd)
+    {
+        //O bloco using garante que a conexão será automaticamente fechada e liberada da memoria ao final do bloco
+        
+        //Cria a conexão utilizando a variavel de ambiente
+        using(var conexao = new MySqlConnection(stringConnection))
+        {
+            //Vinculação: Diz ao comando SQL qual conexão ele deve executar
+            cmd.Connection = conexao;
+
+            //Tratamento de erros: Inicia um bloco de tentativa para proteger o programa de falhas abruptas
+            try
+            {
+                //Abertura de conexão: Estabelece efetivamente a comunicação com o servidor MySql
+                conexao.Open();
+
+                //Executa o comando SQL (Insert, Update ou Delete) no banco de dados
+                //Retorna um número inteiro correspondente ao total de linhas que foram modificadas
+                return cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error: Problema com o banco de dados: {ex.Message}");
+                return -1;
+            }
+        }
+    }
 }
