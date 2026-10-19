@@ -94,4 +94,35 @@ internal static class ConnectionBanco
             }
         }
     }
+
+    //Metodo central para executar comandos de consulta (SELECT) no banco de dados.
+    //Ele retorna um MySqlDaraReader, que é uma especie de ponteiro para ler os dados linha por linha
+    public static MySqlDataReader ExecutarComRetornoDeDados(MySqlCommand cmd)
+    {
+        var conexao = new MySqlConnection(stringConnection);
+
+        try
+        {
+            conexao.Open();
+
+            cmd.Connection = conexao;
+
+            // Executa a consulta e retorna o "leitor" de dados.
+            // O CommandBehavior. CloseConnection e a peça-chave deste método: ele avisa ao leitor
+            // que assim que ele (o leitor) for fechado ou descartado la na tela/classe que o chamou,
+            // a conexao com o banco deve ser fechada automaticamente junto com ele.
+            return cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+        }
+        catch(MySqlException ex)
+        {
+            // O Dispose() já executa o Close() e libera a memória.
+            conexao.Dispose();
+
+            Console.WriteLine($"Error: Problema com o bancco de dados -> {ex.Message}");
+
+            // Ao inves de retornar null, relanca o erro (throw) para que o metodo que
+            // chamou este ExecuteReader saiba que a pesquisa falhou e possa tratar a tela do usuário.
+            throw;
+        }
+    }
 }
