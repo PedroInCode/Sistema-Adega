@@ -56,7 +56,40 @@ internal static class ConnectionBanco
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Error: Problema com o banco de dados: {ex.Message}");
+                Console.WriteLine($"Error: Problema com o banco de dados -> {ex.Message}");
+                return -1;
+            }
+        }
+    }
+
+    public static int ExecutarComandoComRetornoId(MySqlCommand cmd)
+    {
+        using(var conexao = new MySqlConnection(stringConnection))
+        {
+            cmd.Connection = conexao;
+
+            try
+            {
+                conexao.Open();
+
+                //ExecuteScalar executa o comando e retorna APENAS a primeira coluna da primeira linha do resultado. E perfeito para pegar um unico vvalor (Como um Id recem-gerado). Ele retorna um tipo obj porque não sabe de antemao qual o tipo do dado do banco
+                object objRetorno = cmd.ExecuteScalar();
+
+                int retorno = 0;
+
+                //Verificação de segurança: Checa se o banco realmente retornou algo.
+                //Verifica tanto se o obj C# não é nulo (null) quanto se não é um nulo do proprio banco de dados (DBNull.Value)
+                if(objRetorno != null && objRetorno != DBNull.Value)
+                {
+                    //Se passou na verificação, converte o obj (que veio com texto/objeto) para um numero inteiro (int)
+                    retorno = int.Parse(objRetorno.ToString());
+                }
+
+                return retorno;
+            }
+            catch(MySqlException ex)
+            {
+                Console.WriteLine($"Error: Problema com o banco de dados -> {ex.Message}");
                 return -1;
             }
         }
