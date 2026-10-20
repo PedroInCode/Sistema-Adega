@@ -15,7 +15,6 @@ internal abstract class Usuario
     public bool _ativo { get; protected set; }
     public DateTime? _dataCadastro { get; protected set; }
     public DateTime _dataNascimento { get; protected set; }
-
     public TipoUser _tipoUser { get; protected set; }
 
     public Usuario(string? nome, TipoDocumento? tipoDocumento, string? documento, bool ativo, DateTime? dataCadastro, DateTime dataNascimento, TipoUser tipoUser)

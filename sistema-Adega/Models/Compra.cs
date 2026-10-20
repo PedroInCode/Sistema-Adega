@@ -13,24 +13,24 @@ internal class Compra
 {
     private List<ItemCompra> _itensCompra;
 
-    public int idCompra { get; protected set; }
-    public DateTime dataCompra { get; protected set; }
-    public TipoCompra tipoCompra { get; protected set; }
-    public TipoFrete tipoFrete { get; protected set; }
-    public double valorFrete { get; protected set; }
-    public double valorTotal { get; protected set; }
+    public int _idCompra { get; protected set; }
+    public DateTime _dataCompra { get; protected set; }
+    public TipoCompra _tipoCompra { get; protected set; }
+    public TipoFrete _tipoFrete { get; protected set; }
+    public double _valorFrete { get; protected set; }
+    public double _valorTotal { get; protected set; }
 
     public IReadOnlyList<ItemCompra> ItensCompra => _itensCompra.AsReadOnly();
 
 
     public Compra(int idCompra, TipoCompra tipoCompra, TipoFrete tipoFrete, double valorFrete)
     {
-        this.idCompra = idCompra;
-        this.dataCompra = DateTime.Now;
-        this.tipoCompra = tipoCompra;
-        this.tipoFrete = tipoFrete;
-        this.valorFrete = valorFrete;
-        this.valorTotal = 0;
+        this._idCompra = idCompra;
+        this._dataCompra = DateTime.Now;
+        this._tipoCompra = tipoCompra;
+        this._tipoFrete = tipoFrete;
+        this._valorFrete = valorFrete;
+        this._valorTotal = 0;
         this._itensCompra = new List<ItemCompra>();
     }
 
@@ -72,7 +72,7 @@ internal class Compra
 
         foreach(var item in _itensCompra)
         {
-            vTotal += item._precoUnitario
+            vTotal += item._precoUnitario;
         }
     }
 }
