@@ -13,14 +13,14 @@ internal class ItemCompra
     public int _qtdItens {  get; protected set; }
     public decimal _precoUnitario { get; protected set; }
     public Produto _produto { get; protected set; }
-    public decimal subtotal { get; protected set; }
+    public decimal _subtotal { get; protected set; }
 
     public ItemCompra(int idItemCompra, int qtdItens, decimal precoUnitario, Produto produto, decimal subtotal)
     {
-        _idItemCompra = idItemCompra;
-        _qtdItens = qtdItens;
-        _precoUnitario = precoUnitario;
-        _produto = produto;
-        this.subtotal = subtotal;
+        this._idItemCompra = idItemCompra;
+        this._qtdItens = qtdItens;
+        this._precoUnitario = precoUnitario;
+        this._produto = produto;
+        this._subtotal = subtotal;
     }
 }
