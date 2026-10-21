@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using sistema_Adega.Enums;
-using sistema_Adega.Enums.Tipo;
+using sistema_Adega.Models.Enums.Tipo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +71,7 @@ internal class Compra
 
         foreach(var item in _itensCompra)
         {
-            vTotal += item._precoUnitario
+            vTotal += item._precoUnitario;
         }
     }
 }

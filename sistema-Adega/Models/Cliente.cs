@@ -1,4 +1,4 @@
-﻿using sistema_Adega.Enums.Tipo;
+﻿using sistema_Adega.Models.Enums.Tipo;
 using System;
 using System.Collections.Generic;
 using System.Linq;

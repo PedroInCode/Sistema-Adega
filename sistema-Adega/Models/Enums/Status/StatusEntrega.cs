@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sistema_Adega.Enums.Status;
+namespace sistema_Adega.Models.Enums.Status;
 
 public enum StatusEntrega 
 {
