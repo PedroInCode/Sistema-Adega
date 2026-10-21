@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
-using sistema_Adega.Models;
+using sistema_Adega.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,6 @@ internal class AdegaDbContext : DbContext
     public DbSet<Categoria> Categorias { get; set; } = null!;
     public DbSet<Cliente> Clientes { get; set; } = null!;
     public DbSet<Compra> Compras { get; set; } = null!;
-    public DbSet<Contato> Contatos { get; set; } = null!;
     public DbSet<CupomDesconto> CupomDescontos { get; set; } = null!;
     public DbSet<Endereco> Enderecos { get; set; } = null!;
     public DbSet<Entrega> Entregas { get; set; } = null!;
