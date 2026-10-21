@@ -26,7 +26,6 @@ internal class AdegaDbContext : DbContext
     public DbSet<ItemCompra> ItensCompra { get; set; } = null!;
     public DbSet<MarcaProduto> MarcaProdutos { get; set; } = null!;
     public DbSet<Produto> Produtos { get; set; } = null!;
-    public DbSet<Usuario> Usuarios { get; set; } = null!;
 
     private readonly string stringConnection = "Server=10.91.45.46;Port=3306;Database=padaria_bd;Uid=admin;Pwd=12345678";
 

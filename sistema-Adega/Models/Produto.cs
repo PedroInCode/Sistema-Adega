@@ -19,10 +19,11 @@ public class Produto
 
     //O EF Core reconhece pelo padrão "NomeDaClasse + Id"
     public int CategoriaId { get; set; }
+    public int MarcaProdutoId { get; set; }
 
     //PROPRIEDADE DE NAVEGAÇÃO
 
     //Permite acessar os dados da categoria direto do produto
-    public Categoria Categoria { get; set; } = null!;
+    public ICollection<ItemCompra> ItensCompra { get; set; } = new List<ItemCompra>();
 
 }

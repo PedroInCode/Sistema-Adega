@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace sistema_Adega.Models;
 
-internal class MarcaProduto
+public class MarcaProduto
 {
+    public int Id { get; set; }
+    public string Nome { get; set; } = string.Empty;
+
+    //PROPRIEDADE DE NAVEGAÇÃO (Uma marca possui vários produtos)
+    public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
 }

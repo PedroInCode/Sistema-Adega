@@ -7,20 +7,15 @@ using System.Threading.Tasks;
 
 namespace sistema_Adega.Models;
 
-internal class Cliente : Usuario
+public class Cliente 
 {
-    public int _pontosFidelidade { get; protected set; }
+    public int Id { get; set; }
+    public string Nome { get; set; } = string.Empty;
+    public string Cpf { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Telefone { get; set; } = string.Empty;
 
-    public Cliente(int pontosFidelidade, string? nome, TipoDocumento? tipoDocumento, string? documento, bool ativo, DateTime? dataCadastro, DateTime dataNascimento, TipoUser tipoUser) : base(nome, tipoDocumento, documento, ativo, dataCadastro, dataNascimento, tipoUser)
-    {
-        this._pontosFidelidade = pontosFidelidade;
-    }
-
-    
-    public void ConsultarPontos()
-    {
-        Console.WriteLine($"Total de pontos: {this._pontosFidelidade}");
-    }
-
-    
+    //PROPRIEDADE DE NAVEGAÇÃO PARA ENDEREÇOS E COMPRAS
+    public ICollection<Endereco> Enderecos { get; set; } = new List<Endereco>();
+    public ICollection<Compra> Compras { get; set; } = new List<Compra>();
 }

@@ -8,70 +8,28 @@ using System.Threading.Tasks;
 
 namespace sistema_Adega.Models;
 
-internal class Compra
+public class Compra
 {
-    private List<ItemCompra> _itensCompra;
+    public int Id { get; set; }
+    public DateTime DataCompra { get; set; } = DateTime.Now;
+    public decimal ValorTotal { get; set; }
 
-    public int idCompra { get; protected set; }
-    public DateTime dataCompra { get; protected set; }
-    public TipoCompra tipoCompra { get; protected set; }
-    public TipoFrete tipoFrete { get; protected set; }
-    public double valorFrete { get; protected set; }
-    public double valorTotal { get; protected set; }
+    // Chaves Estrangeiras
+    public int ClienteId { get; set; }
+    public int FormaPagamentoId { get; set; }
 
-    public IReadOnlyList<ItemCompra> ItensCompra => _itensCompra.AsReadOnly();
+    // Ocupa opcionalmente um cupom de desconto
+    public int? CupomDescontoId { get; set; }
 
+    // Propriedades de Navegação
+    public Cliente Cliente { get; set; } = null!;
+    public FormaPagamento FormaPagamento { get; set; } = null!;
+    public CupomDesconto? CupomDesconto { get; set; }
 
-    public Compra(int idCompra, TipoCompra tipoCompra, TipoFrete tipoFrete, double valorFrete)
-    {
-        this.idCompra = idCompra;
-        this.dataCompra = DateTime.Now;
-        this.tipoCompra = tipoCompra;
-        this.tipoFrete = tipoFrete;
-        this.valorFrete = valorFrete;
-        this.valorTotal = 0;
-        this._itensCompra = new List<ItemCompra>();
-    }
+    // Relação 1 para N com os itens da compra
+    public ICollection<ItemCompra> ItensCompra { get; set; } = new List<ItemCompra>();
 
-    public void AdicionarItem(ItemCompra itemCompra)
-    {
-        var itemExistente = BuscarItem(itemCompra._idItemCompra);
+    // Relação 1 para 1 (ou 1 para N) com Entrega
+    public Entrega? Entrega { get; set; }
 
-        if(itemCompra._qtdItens <= 0)
-        {
-
-        }
-
-        if (itemExistente != null)
-        {
-            this._itensCompra.Add(itemExistente);
-        }
-    }
-
-    public ItemCompra? BuscarItem(int idItem)
-    {
-        return _itensCompra.FirstOrDefault(item => item._idItemCompra == idItem);
-    }
-
-    public bool RemoverItem(int idItem)
-    {
-        var itemExistente = BuscarItem(idItem);
-
-        if( itemExistente != null )
-        {
-            return this._itensCompra.Remove(itemExistente);
-        }
-
-        return false;
-    }
-
-    public void CalcularTotal()
-    {
-        decimal vTotal = 0;
-
-        foreach(var item in _itensCompra)
-        {
-            vTotal += item._precoUnitario;
-        }
-    }
 }

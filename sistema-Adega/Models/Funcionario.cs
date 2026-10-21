@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace sistema_Adega.Models;
 
-internal class Funcionario
+public class Funcionario
 {
 }
