@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sistema_Adega.Models;
+namespace sistema_Adega.Model;
 
-public class MarcaProduto
+public class Categoria
 {
     public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
+    public string Descricao { get; set; } = string.Empty;
 
-    //PROPRIEDADE DE NAVEGAÇÃO (Uma marca possui vários produtos)
+    //PROPRIEDADE DE NAVEGAÇÃO (lista)
+
+    //Uma categoria possui vários produtos
     public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
 }
