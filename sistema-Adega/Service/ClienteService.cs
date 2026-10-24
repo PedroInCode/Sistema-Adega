@@ -23,19 +23,22 @@ public class ClienteService
         _context.SaveChanges();
     }
 
-    public List<Cliente> ListarTodos()
+    public IEnumerable<Cliente> ListarTodos()
     {
-        return _context.Clientes.ToList();
+        return _context.Clientes
+            .Include(c => c.Enderecos)
+            .Include(c => c.Compras)
+            .ToList();
     }
 
     public Cliente? BuscarPorID(int id)
     {
-        var cliente = _context.Clientes.Find(id);
+        var cliente = _context.Clientes
+            .Include(c => c.Enderecos)
+            .Include(c => c.Compras)
+            .FirstOrDefault(c => c.Id == id);
 
-        if(cliente == null)
-        {
-            throw new Exception("O cliente com o ID informado não foi encontrado!");
-        }
+        if (cliente == null) throw new KeyNotFoundException("O cliente com o ID informado não foi encontrado!");
 
         return cliente;
     }
@@ -47,7 +50,7 @@ public class ClienteService
             .Include(c => c.Compras)
             .FirstOrDefault(c => c.Id == id);
 
-        if (cliente == null) throw new KeyNotFoundException("O cliente não  foi encontrado no sistema!");
+        if (cliente == null) throw new KeyNotFoundException("O cliente com o ID informado não foi encontrado!");
 
         return cliente;
     }
@@ -61,13 +64,11 @@ public class ClienteService
     public void Deletar(int id)
     {
         var cliente = _context.Clientes.Find(id);
-        if (cliente != null)
-        {
-            _context.Clientes.Remove(cliente);
-            _context.SaveChanges();
-            return;
-        }
 
-        throw new KeyNotFoundException("O cliente não foi encontrado no sistema!");
+        if (cliente == null) throw new KeyNotFoundException("O cliente com o ID informado não foi encontrado!");
+
+        _context.Clientes.Remove(cliente);
+        _context.SaveChanges();
+        
     }
 }

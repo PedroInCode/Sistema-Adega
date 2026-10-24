@@ -22,8 +22,10 @@ public class Produto
     public int MarcaProdutoId { get; set; }
 
     //PROPRIEDADE DE NAVEGAÇÃO
+    public Categoria Categoria { get; set; } = null!;
+    public MarcaProduto MarcaProduto { get; set; } = null!;
 
     //Permite acessar os dados da categoria direto do produto
-    public ICollection<ItemCompra> ItensCompra { get; set; } = new List<ItemCompra>();
+    public ICollection<ItemCompra> ItemCompra { get; set; } = new List<ItemCompra>();
 
 }

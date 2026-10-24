@@ -13,56 +13,53 @@ namespace sistema_Adega.Service;
 
 public class CategoriaService
 {
+
+    private readonly AdegaDbContext _context;
+
+    public CategoriaService(AdegaDbContext context)
+    {
+        this._context = context;
+    }
+
+
     //Insert
     public void Insert(Categoria categoria)
     {
-        using (var db = new AdegaDbContext())
-        {
-            db.Categorias.Add(categoria);
-            db.SaveChanges();
-        }
+        _context.Categorias.Add(categoria);
+        _context.SaveChanges();
     }
 
     //Listar Todos
-    public List<Categoria> ListarTodos()
+    public IEnumerable<Categoria> ListarTodos()
     {
-        using(var db = new AdegaDbContext())
-        {
-            return db.Categorias.ToList();
-        }
+        return _context.Categorias.ToList();
     }
 
     //Buscar por Id
     public Categoria? BuscarPorId(int id)
     {
-        using(var db = new AdegaDbContext())
-        {
-            //O método .Find() do Entity Framework Core serve para buscar um único registo na base de dados através da sua Chave Primária(Primary Key / Id) de forma muito rápida e otimizada.
-            return db.Categorias.Find(id);
-        }
+        var categoria = _context.Categorias.Find(id);
+
+        if (categoria == null) throw new KeyNotFoundException("A Categoria com o ID informado não foi encontrada no sistema!");
+
+        return categoria;
     }
 
     //Atualizar
     public void Atualizar(Categoria categoria)
     {
-        using(var db = new AdegaDbContext())
-        {
-            db.Categorias.Update(categoria);
-            db.SaveChanges();
-        }
+        _context.Categorias.Update(categoria);
+        _context.SaveChanges();
     }
 
     //Deletar
     public void Deletar(int id)
     {
-        using(var db = new AdegaDbContext())
-        {
-            var categoria = db.Categorias.Find(id);
-            if(categoria != null)
-            {
-                db.Categorias.Remove(categoria);
-                db.SaveChanges();
-            }
-        }
+        var categoria = _context.Categorias.Find(id);
+
+        if (categoria == null) throw new KeyNotFoundException("A Categoria com o ID informado não foi encontrada no sistema!");
+
+        _context.Categorias.Remove(categoria);
+        _context.SaveChanges();
     }
 }

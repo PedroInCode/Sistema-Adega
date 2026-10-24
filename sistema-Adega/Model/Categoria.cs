@@ -12,8 +12,6 @@ public class Categoria
     public string Nome { get; set; } = string.Empty;
     public string Descricao { get; set; } = string.Empty;
 
-    //PROPRIEDADE DE NAVEGAÇÃO (lista)
-
     //Uma categoria possui vários produtos
     public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
 }
