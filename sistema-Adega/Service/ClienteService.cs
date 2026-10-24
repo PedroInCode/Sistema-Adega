@@ -1,72 +1,73 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿
 using Microsoft.EntityFrameworkCore;
 using sistema_Adega.Banco;
 using sistema_Adega.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace sistema_Adega.Service;
 
 public class ClienteService
 {
+    private readonly AdegaDbContext _context;
+
+    public ClienteService(AdegaDbContext context)
+    {
+        this._context = context;
+    }
+
     public void Insert(Cliente cliente)
     {
-        using(var db = new AdegaDbContext())
-        {
-            db.Clientes.Add(cliente); 
-            db.SaveChanges();
-        }
+        _context.Clientes.Add(cliente);
+        _context.SaveChanges();
     }
 
     public List<Cliente> ListarTodos()
     {
-        using(var db = new AdegaDbContext())
-        {
-            return db.Clientes.ToList();
-        }
+        return _context.Clientes.ToList();
     }
 
     public Cliente? BuscarPorID(int id)
     {
-        using(var db = new AdegaDbContext())
+        var cliente = _context.Clientes.Find(id);
+
+        if(cliente == null)
         {
-            return db.Clientes.Find(id);
+            throw new Exception("O cliente com o ID informado não foi encontrado!");
         }
+
+        return cliente;
     }
 
     public Cliente? BuscarPorIdComRelacionamento(int id)
     {
-        using(var db = new AdegaDbContext())
-        {
-            return db.Clientes
-                .Include(c => c.Enderecos)
-                .Include(c => c.Compras)
-                .FirstOrDefault(c => c.Id == id);
-        }
+        var cliente = _context.Clientes
+            .Include(c => c.Enderecos)
+            .Include(c => c.Compras)
+            .FirstOrDefault(c => c.Id == id);
+
+        if (cliente == null) throw new KeyNotFoundException("O cliente não  foi encontrado no sistema!");
+
+        return cliente;
     }
 
     public void Atualizar(Cliente cliente)
     {
-        using(var db = new AdegaDbContext())
-        {
-            db.Clientes.Update(cliente);
-            db.SaveChanges();
-        }
+        _context.Clientes.Update(cliente);
+        _context.SaveChanges();
     }
-    
+
     public void Deletar(int id)
     {
-        using(var db = new AdegaDbContext())
+        var cliente = _context.Clientes.Find(id);
+        if (cliente != null)
         {
-            var cliente = db.Clientes.Find(id);
-            if(cliente != null)
-            {
-                db.Clientes.Remove(cliente);
-                db.SaveChanges();
-            }
+            _context.Clientes.Remove(cliente);
+            _context.SaveChanges();
+            return;
         }
+
+        throw new KeyNotFoundException("O cliente não foi encontrado no sistema!");
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace sistema_Adega.Banco;
 
-internal class AdegaDbContext : DbContext
+public class AdegaDbContext : DbContext
 {
     //Cada DbSet representa uma tabela no banco de dados
     // Mapeamento de todas as tabelas do seu sistema com base na sua pasta Models
