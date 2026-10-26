@@ -26,7 +26,7 @@ public class AdegaDbContext : DbContext
     public DbSet<MarcaProduto> MarcaProdutos { get; set; } = null!;
     public DbSet<Produto> Produtos { get; set; } = null!;
 
-    private readonly string stringConnection = "Server=10.91.45.46;Port=3306;Database=padaria_bd;Uid=admin;Pwd=12345678";
+    private readonly string stringConnection = "Server=SERVERIP;Port=3306;Database=NOME_BANCO;Uid=USER;Pwd=SENHA";
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
