@@ -12,7 +12,7 @@ public class Produto
     public string Nome { get; set; } = string.Empty;
     public string Descricao { get; set; } = string.Empty;
     public decimal Preco { get; set; }
-    public int qtdEstoque { get; set; }
+    public int QuantidadeEstoque { get; set; }
     public bool statusProduto { get; set; }
 
     //Chave Estrangeira
