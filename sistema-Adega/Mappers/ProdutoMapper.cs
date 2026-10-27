@@ -1,11 +1,11 @@
 ﻿using Riok.Mapperly.Abstractions;
-using sistema_Adega.Dtos;
+using sistema_Adega.Dtos.Produtos;
 using sistema_Adega.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-  
+
 
 namespace sistema_Adega.Mappers;
 
@@ -13,15 +13,17 @@ namespace sistema_Adega.Mappers;
 [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)] 
 public partial class ProdutoMapper
 {
-    // Ensinamos o Mapperly a ligar os campos com nomes diferentes ou aninhados:
+    // 1. Converte um único produto do banco para o DTO de resposta da tela
     [MapProperty("Categoria.Nome", nameof(ProdutoResponseDto.CategoriaNome))]
     [MapProperty("MarcaProduto.Nome", nameof(ProdutoResponseDto.MarcaProdutoNome))]
+    public partial ProdutoResponseDto ConverterParaDto(Produto produto);
 
-    //O Mapperly identifica automaticamente que 'CategoriaNome' no DTO mapeia para 'Categoria.Nome' na Model Produto!
-    public partial ProdutoResponseDto ProdutoToDto(Produto produto); //Converte um unico obj da entidade Produto para um unico ProdutoResponseDto
+    // 2. Converte uma lista inteira de produtos para uma lista de DTOs de resposta
+    public partial IEnumerable<ProdutoResponseDto> ConverterListaParaDto(IEnumerable<Produto> produtos);
 
-    //Mapeando para lista completa
-    public partial IEnumerable<ProdutoResponseDto> ProdutosToDtoList(IEnumerable<Produto> produtos); //Converte uma coleção inteira (lista) de produtos (IEnumerable<Produto>) de uma só vez para uma lista de DTOs (IEnumerable<ProdutoResponseDto>).
+    // 3. Converte os dados do formulário de cadastro (CreateDto) para a Entidade do banco
+    public partial Produto ConverterParaEntidade(ProdutoCreateDto dto);
 
-    //O Mapperly é inteligente o suficiente para gerar os dois: Um lida com o obj isolado e o outro percorre a lista convertendo item por item de forma otimizada nos bastidores.
+    // 4. Atualiza uma entidade existente com os novos dados vindos do UpdateDto
+    public partial void AtualizarEntidade(ProdutoUpdateDto dto, Produto produto);
 }

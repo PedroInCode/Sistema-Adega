@@ -10,8 +10,10 @@ public class ProdutoResponseDto
 {
     public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
+    public string Descricao { get; set; } = string.Empty;
     public decimal Preco { get; set; }
     public int QuantidadeEstoque { get; set; }
+    public bool StatusProduto { get; set; }
 
     //Em vez de trazer o obj Categoria inteiro, trazemos apenas o Nome!
     public string CategoriaNome { get; set; } = string.Empty;
