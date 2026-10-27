@@ -25,7 +25,7 @@ public class ProdutoService
     public void Adicionar(ProdutoCreateDto dto)
     {
         //Usa o Mapperly para converter o dto de criação numa Entidade pronta para o banco
-        var produto = _mapper.ConverterParaEntidade(dto);
+        var produto = _mapper.MapearParaEntidade(dto);
 
         _context.Produtos.Add(produto);
         _context.SaveChanges();
@@ -41,7 +41,7 @@ public class ProdutoService
             .ToList();
 
         //Converte instantaneamente a lista de Models para lista de DTOs
-        return _mapper.ConverterListaParaDto(produtos); //Usa o código compilado pelo Mapperly para preencher o ProdutoResponseDto (incluindo CategoriaNome e o MarcaProdutoNome) a uma velocidade bem melhor que o AutoMapper.
+        return _mapper.MapearListaParaResponse(produtos); //Usa o código compilado pelo Mapperly para preencher o ProdutoResponseDto (incluindo CategoriaNome e o MarcaProdutoNome) a uma velocidade bem melhor que o AutoMapper.
     }
 
     public ProdutoResponseDto? BuscarPorId(int id)
@@ -55,7 +55,7 @@ public class ProdutoService
         if(produto == null) throw new KeyNotFoundException("O produto com o ID informado não foi encontrado!");
 
         //Converte a Model para o DTO usando o Mapperly
-        return _mapper.ConverterParaDto(produto);
+        return _mapper.MapearParaResponse(produto);
     }
 
     public void Atualizar(int id, ProdutoUpdateDto dto)
@@ -63,7 +63,7 @@ public class ProdutoService
         var produtoExistente = _context.Produtos.Find(id);
         if (produtoExistente == null) throw new KeyNotFoundException("O produto com o ID informado não foi encontrado!");
 
-        _mapper.AtualizarEntidade(dto, produtoExistente);
+        _mapper.AtualizarProdutoComDto(dto, produtoExistente);
         _context.SaveChanges();
     }
 
