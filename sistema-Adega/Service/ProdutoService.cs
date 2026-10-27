@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using sistema_Adega.Banco;
-using sistema_Adega.Dtos;
+using sistema_Adega.Dtos.Produtos;
 using sistema_Adega.Mappers;
 using sistema_Adega.Model;
 using System;
@@ -18,10 +18,15 @@ public class ProdutoService
     {
         this._context = context; //Credencial para entrar no banco de dados
         this._mapper = new ProdutoMapper(); //Instancia o mapper gerado automaticamente pelo Mapperly
+        // Optou-se pela instanciação direta por ser um componente leve, estático e sem estado (sem dependência externas de tempo de execução)
+                                            
     }
 
-    public void Adicionar(Produto produto)
+    public void Adicionar(ProdutoCreateDto dto)
     {
+        //Usa o Mapperly para converter o dto de criação numa Entidade pronta para o banco
+        var produto = _mapper.ConverterParaEntidade(dto);
+
         _context.Produtos.Add(produto);
         _context.SaveChanges();
     }
@@ -36,7 +41,7 @@ public class ProdutoService
             .ToList();
 
         //Converte instantaneamente a lista de Models para lista de DTOs
-        return _mapper.ProdutosToDtoList(produtos); //Usa o código compilado pelo Mapperly para preencher o ProdutoResponseDto (incluindo CategoriaNome e o MarcaProdutoNome) a uma velocidade bem melhor que o AutoMapper.
+        return _mapper.ConverterListaParaDto(produtos); //Usa o código compilado pelo Mapperly para preencher o ProdutoResponseDto (incluindo CategoriaNome e o MarcaProdutoNome) a uma velocidade bem melhor que o AutoMapper.
     }
 
     public ProdutoResponseDto? BuscarPorId(int id)
@@ -50,13 +55,16 @@ public class ProdutoService
         if(produto == null) throw new KeyNotFoundException("O produto com o ID informado não foi encontrado!");
 
         //Converte a Model para o DTO usando o Mapperly
-        return _mapper.ProdutoToDto(produto);
+        return _mapper.ConverterParaDto(produto);
     }
 
-    public void Atualizar(Produto produto)
+    public void Atualizar(int id, ProdutoUpdateDto dto)
     {
-        _context.Produtos.Update(produto);
-        _context.SaveChanges(); //Salva as atualizações no banco    
+        var produtoExistente = _context.Produtos.Find(id);
+        if (produtoExistente == null) throw new KeyNotFoundException("O produto com o ID informado não foi encontrado!");
+
+        _mapper.AtualizarEntidade(dto, produtoExistente);
+        _context.SaveChanges();
     }
 
     public void Deletar(int id)
