@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySqlConnector;
+using Microsoft.Extensions.Configuration;
 using sistema_Adega.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace sistema_Adega.Data;
 
@@ -26,14 +20,25 @@ public class AdegaDbContext : DbContext
     public DbSet<MarcaProduto> MarcaProdutos { get; set; } = null!;
     public DbSet<Produto> Produtos { get; set; } = null!;
 
-    private readonly string stringConnection = "Server=SERVERIP;Port=3306;Database=NOME_BANCO;Uid=USER;Pwd=SENHA";
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //Configura o EF Core para utilizar o MySql/MariaDB com autodetecção de versão
-        optionsBuilder.UseMySql(
-            stringConnection,
-            ServerVersion.AutoDetect(stringConnection)
+        if (!optionsBuilder.IsConfigured)
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddUserSecrets<AdegaDbContext>()
+                .Build();
+
+            string stringConnection =
+                configuration.GetConnectionString("Adega")
+                ?? throw new InvalidOperationException(
+                    "String de conexão 'Adega' não configurada.");
+
+            optionsBuilder.UseMySql(
+                stringConnection,
+                ServerVersion.AutoDetect(stringConnection)
             );
+        }
+
     }
 }
