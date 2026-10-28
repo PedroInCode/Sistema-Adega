@@ -20,10 +20,7 @@ public class Compra
 
     // --- Chaves Estrangeiras ---
     public int ClienteId { get; set; }
-
-    // Pode ser nulo caso seja uma compra 100% online feita pelo site sem vendedor direto
-    public int? FuncionarioId { get; set; }
-
+    public int? FuncionarioId { get; set; } // Pode ser nulo caso seja uma compra 100% online feita pelo site sem vendedor direto
     public int FormaPagamentoId { get; set; }
     public int? CupomDescontoId { get; set; }
 

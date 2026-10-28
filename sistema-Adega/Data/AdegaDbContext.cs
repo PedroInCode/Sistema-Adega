@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sistema_Adega.Banco;
+namespace sistema_Adega.Data;
 
 public class AdegaDbContext : DbContext
 {

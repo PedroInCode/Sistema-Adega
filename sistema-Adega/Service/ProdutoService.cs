@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using sistema_Adega.Banco;
+using sistema_Adega.Data;
 using sistema_Adega.Dtos.Produtos;
 using sistema_Adega.Mappers;
 using sistema_Adega.Model;

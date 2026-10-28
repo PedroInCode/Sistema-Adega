@@ -16,8 +16,6 @@ public class Produto
     public bool StatusProduto { get; set; }
 
     //Chave Estrangeira
-
-    //O EF Core reconhece pelo padrão "NomeDaClasse + Id"
     public int CategoriaId { get; set; }
     public int MarcaProdutoId { get; set; }
 

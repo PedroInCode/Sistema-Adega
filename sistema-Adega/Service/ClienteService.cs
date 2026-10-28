@@ -1,6 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using sistema_Adega.Banco;
+using sistema_Adega.Data;
 using sistema_Adega.Model;
 using System;
 using System.Collections.Generic;
