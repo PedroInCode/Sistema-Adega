@@ -8,7 +8,6 @@ namespace sistema_Adega.Models.Enums.Status;
 
 public enum StatusEntrega 
 {
-    EmSeparacao,
     EmTransito,
     Atrasado,
     Entregue

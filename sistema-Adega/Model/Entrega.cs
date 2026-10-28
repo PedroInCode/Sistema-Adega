@@ -11,7 +11,6 @@ namespace sistema_Adega.Model;
 public class Entrega
 {
     public int Id { get; set; }
-    public string CodigoRastreio { get; set; } = string.Empty;
     public DateTime? DataPrevisao { get; set; }
 
     public StatusEntrega StatusEntrega { get; set; }
@@ -24,4 +23,7 @@ public class Entrega
     // --- NOVO: Qual funcionário (motorista) vai realizar essa entrega? ---
     public int? FuncionarioId { get; set; }
     public Funcionario? Funcionario { get; set; }
+
+    public int EnderecoId { get; set; }
+    public Endereco Endereco { get; set; } = null!;
 }
