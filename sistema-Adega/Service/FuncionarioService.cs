@@ -34,17 +34,16 @@ public class FuncionarioService
         };
 
         _context.Usuarios.Add(novoUsuario);
-        _context.SaveChanges(); // Salva para gerar o ID do usuário
+        _context.SaveChanges(); 
 
         // 2. Associa o Id gerado do usuário ao Funcionário
         funcionario.UsuarioId = novoUsuario.Id;
 
-        // 3. Salva o Funcionário na sua respetiva tabela (sem campos de login/senha duplicados)
+        // 3. Salva o Funcionário na  tabela 
         _context.Funcionarios.Add(funcionario);
         _context.SaveChanges();
     }
 
-    // 2. Autenticar o funcionário (Substitui a stored procedure sp_FazerLogin)
     public Funcionario? Autenticar(string loginDigitado, string senhaTextoLimpo)
     {
         if (string.IsNullOrWhiteSpace(loginDigitado) || string.IsNullOrWhiteSpace(senhaTextoLimpo))

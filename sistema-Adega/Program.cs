@@ -22,17 +22,17 @@ class Program
 
         var novoFuncionario = new Funcionario
         {
-            Nome = "João Silva",
-            Documento = "123.456.789-00",
+            Nome = "Arthur Campos",
+            Documento = "206.596.909-80",
             TipoDocumento = TipoDocumento.CPF,
-            Telefone = "(11) 98888-7777",
-            Email = "joao.silva@adega.com",
+            Telefone = "(11) 95678-6906",
+            Email = "arthurcampos@adega.com",
             TipoCargo = TipoCargo.Gerente,
             Salario = 4500.00m,
             Ativo = true
         };
 
-        string loginDesejado = "admin_joao";
+        string loginDesejado = "admin_arthur";
         string senhaTextoPuro = "123456"; // Palavra-passe que o funcionário vai usar para entrar
 
         try
