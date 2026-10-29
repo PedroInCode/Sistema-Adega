@@ -13,13 +13,9 @@ public class Funcionario
     public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
     public string Documento { get; set; } = string.Empty;
-    public TipoDocumento TipoDocumento { get; set; }
+    public TipoDocumento TipoDocumento { get; set; } //enum
     public string Telefone { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-
-    // Credenciais de Acesso (para o login com BCrypt)
-    public string Login { get; set; } = string.Empty;
-    public string Senha { get; set; } = string.Empty;
 
     // Dados Profissionais
     public TipoCargo TipoCargo { get; set; }
@@ -27,11 +23,10 @@ public class Funcionario
     public DateTime DataAdmissao { get; set; } = DateTime.Now;
     public bool Ativo { get; set; } = true;
 
-    // Chave Estrangeira para Usuario (Obrigatório para funcionários, pois precisam de login)
+    // A ligação obrigatória com o Usuário (onde realmente ficam o Login e a Senha)
     public int UsuarioId { get; set; }
     public Usuario Usuario { get; set; } = null!;
 
-    // Relacionamentos
     public ICollection<Compra> Compras { get; set; } = new List<Compra>();
     public ICollection<Entrega> Entregas { get; set; } = new List<Entrega>();
 }
